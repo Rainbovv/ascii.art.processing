@@ -12,9 +12,8 @@ public class ImageNoiseFilter {
         int c;
 
         while ((c = br.read())!=-1) {
-            if (c == '@') {
-                c = ' ';
-            }
+            if (c == '@') c = ' ';
+            
             bw.write(c);
         }
 
