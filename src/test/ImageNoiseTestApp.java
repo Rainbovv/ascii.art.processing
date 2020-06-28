@@ -12,7 +12,6 @@ public class ImageNoiseTestApp {
         testsSetup();
 
         testNoiseReduction();
-
     }
 
     public static void testsSetup() throws Exception {
@@ -24,7 +23,6 @@ public class ImageNoiseTestApp {
                 .applyNoiseTo(eclipseLogo, 25)
                 .applyNoiseTo(eclipseLogo, 50)
                 .applyNoiseTo(eclipseLogo, 75);
-
     }
 
     public static void testNoiseReduction() throws Exception {
@@ -63,5 +61,4 @@ public class ImageNoiseTestApp {
         System.out.println(message);
         System.out.println("########################################");
     }
-
 }

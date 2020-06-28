@@ -13,7 +13,9 @@ public class ImageComparator {
         int result = 0;
 
         while ((c = br.read())!=-1) {
+
             cModified = brModified.read();
+
             if (c != cModified) result++;
         }
         return result;

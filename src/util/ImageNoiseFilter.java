@@ -13,11 +13,7 @@ public class ImageNoiseFilter {
 
         while ((c = br.read())!=-1) {
             if (c == '@') c = ' ';
-<<<<<<< HEAD
-            
-=======
 
->>>>>>> refs/remotes/origin/lessCode
             bw.write(c);
         }
 

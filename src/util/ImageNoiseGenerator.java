@@ -23,5 +23,4 @@ public class ImageNoiseGenerator {
 
         return this;
     }
-
 }
