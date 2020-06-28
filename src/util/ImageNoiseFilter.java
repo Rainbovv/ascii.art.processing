@@ -4,7 +4,7 @@ import java.io.*;
 
 public class ImageNoiseFilter {
 
-    public ImageNoiseFilter removeNoiseFrom(String sourceFile) throws IOException {
+    public ImageNoiseFilter removeNoiseFrom(String sourceFile) throws Exception {
 
         BufferedReader br = new BufferedReader( new FileReader(sourceFile) );
         BufferedWriter bw = new BufferedWriter( new FileWriter(sourceFile.replace(".txt", ".clean.txt")));
@@ -12,9 +12,8 @@ public class ImageNoiseFilter {
         int c;
 
         while ((c = br.read())!=-1) {
-            if (c == '@') {
-                c = ' ';
-            }
+            if (c == '@') c = ' ';
+
             bw.write(c);
         }
 

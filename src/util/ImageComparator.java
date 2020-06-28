@@ -3,7 +3,7 @@ package util;
 import java.io.*;
 
 public class ImageComparator {
-    public int compareTwo(String sourceFile, String modifiedFile) throws IOException {
+    public int compareTwo(String sourceFile, String modifiedFile) throws Exception {
 
         BufferedReader br = new BufferedReader( new FileReader(sourceFile));
         BufferedReader brModified = new BufferedReader( new FileReader(modifiedFile));
