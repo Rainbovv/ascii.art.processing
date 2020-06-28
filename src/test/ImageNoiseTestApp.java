@@ -1,34 +1,35 @@
 package test;
 
-import java.io.IOException;
-
-import util.ImageComparator;
-import util.ImageNoiseFilter;
-import util.ImageNoiseGenerator;
+import util.*;
 
 public class ImageNoiseTestApp {
 
-    public static void main(String[] args) throws IOException {
+    static String javaLogo = "tests/data/java-logo.txt";
+    static String eclipseLogo = "tests/data/eclipse-logo.txt";
+
+    public static void main(String[] args) throws Exception {
 
         testsSetup();
 
-         testNoiseReduction();
+        testNoiseReduction();
 
     }
 
-    public static void testsSetup() throws IOException {
+    public static void testsSetup() throws Exception {
         header("SETTING UP TESTS");
         new ImageNoiseGenerator()
-                .applyNoiseTo("tests/data/java-logo.txt", 25)
-                .applyNoiseTo("tests/data/java-logo.txt", 50)
-                .applyNoiseTo("tests/data/java-logo.txt", 75)
-                .applyNoiseTo("tests/data/eclipse-logo.txt", 25)
-                .applyNoiseTo("tests/data/eclipse-logo.txt", 50)
-                .applyNoiseTo("tests/data/eclipse-logo.txt", 75);
+                .applyNoiseTo(javaLogo, 25)
+                .applyNoiseTo(javaLogo, 50)
+                .applyNoiseTo(javaLogo, 75)
+                .applyNoiseTo(eclipseLogo, 25)
+                .applyNoiseTo(eclipseLogo, 50)
+                .applyNoiseTo(eclipseLogo, 75);
 
     }
 
-    public static void testNoiseReduction() throws IOException {
+    public static void testNoiseReduction() throws Exception {
+
+        ImageComparator imageComparator = new ImageComparator();
 
         header("TESTS RUNNING");
         new ImageNoiseFilter()
@@ -40,48 +41,20 @@ public class ImageNoiseTestApp {
                 .removeNoiseFrom("tests/data/eclipse-logo.noisy.75.txt");
 
 
-        if(
-                new ImageComparator().compareTwo(
-                        "tests/data/java-logo.txt",
-                        "tests/data/java-logo.noisy.25.clean.txt"
-                ) == 0
-                        &&
-                        new ImageComparator().compareTwo(
-                                "tests/data/java-logo.txt",
-                                "tests/data/java-logo.noisy.50.clean.txt"
-                        ) == 0
-                        &&
-                        new ImageComparator().compareTwo(
-                                "tests/data/java-logo.txt",
-                                "tests/data/java-logo.noisy.75.clean.txt"
-                        ) == 0
-                        &&
-                        new ImageComparator().compareTwo(
-                                "tests/data/eclipse-logo.txt",
-                                "tests/data/eclipse-logo.noisy.25.clean.txt"
-                        ) == 0
-                        &&
-                        new ImageComparator().compareTwo(
-                                "tests/data/eclipse-logo.txt",
-                                "tests/data/eclipse-logo.noisy.50.clean.txt"
-                        ) == 0
-                        &&
-                        new ImageComparator().compareTwo(
-                                "tests/data/eclipse-logo.txt",
-                                "tests/data/eclipse-logo.noisy.75.clean.txt"
-                        ) == 0
+        if (  imageComparator.compareTwo(javaLogo, "tests/data/java-logo.noisy.25.clean.txt")
+            + imageComparator.compareTwo(javaLogo, "tests/data/java-logo.noisy.50.clean.txt")
+            + imageComparator.compareTwo(javaLogo, "tests/data/java-logo.noisy.75.clean.txt")
 
-
-        ) {
+            + imageComparator.compareTwo(eclipseLogo, "tests/data/eclipse-logo.noisy.25.clean.txt")
+            + imageComparator.compareTwo(eclipseLogo, "tests/data/eclipse-logo.noisy.50.clean.txt")
+            + imageComparator.compareTwo(eclipseLogo, "tests/data/eclipse-logo.noisy.75.clean.txt")
+            == 0 ) {
 
             System.out.println("TEST SUCCEEDED!");
 
         } else {
             System.err.println("TEST FAILED");
         }
-
-
-
     }
 
 

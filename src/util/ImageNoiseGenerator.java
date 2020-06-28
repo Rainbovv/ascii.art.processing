@@ -4,7 +4,7 @@ import java.io.*;
 
 public class ImageNoiseGenerator {
 
-    public ImageNoiseGenerator applyNoiseTo(String sourceFile, int percentAmount) throws IOException {
+    public ImageNoiseGenerator applyNoiseTo(String sourceFile, int percentAmount) throws Exception {
 
         BufferedReader br = new BufferedReader( new FileReader(sourceFile) );
         BufferedWriter bw = new BufferedWriter( new FileWriter(sourceFile.replace(".txt", ".noisy." + percentAmount + ".txt")) );
@@ -16,7 +16,7 @@ public class ImageNoiseGenerator {
                 c = '@';
             }
             bw.write(c);
-//			System.out.println((char)c);
+
         }
         bw.close();
         br.close();
